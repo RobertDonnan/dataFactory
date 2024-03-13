@@ -26,6 +26,9 @@
 		"AzureDataLakeStorage7_accountKey": {
 			"value": ""
 		},
+		"sqlinputblob_connectionString": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://moviesdataset.dfs.core.windows.net/"
 		},
@@ -41,6 +44,15 @@
 		"AzureDataLakeStorage5_properties_typeProperties_url": {
 			"value": "https://moviesdataset.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage6_properties_typeProperties_url": {
+			"value": "https://moviesdataset.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage7_properties_typeProperties_url": {
+			"value": "https://moviesdataset.dfs.core.windows.net/"
+		},
+		"HttpUfoData_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/vetate/ufo-data/main/ufo-sightings-transformed.csv "
+		},
 		"actionHTTP_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/vetate/project-ETL-Movies-DATAcsv/main/action.csv"
 		},
@@ -55,15 +67,6 @@
 		},
 		"thrillerHTTP_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/vetate/project-ETL-Movies-DATAcsv/main/thriller.csv "
-		},
-		"HttpUfoData_properties_typeProperties_url": {
-			"value": "https://raw.githubusercontent.com/vetate/ufo-data/main/ufo-sightings-transformed.csv "
-		},
-		"AzureDataLakeStorage6_properties_typeProperties_url": {
-			"value": "https://moviesdataset.dfs.core.windows.net/"
-		},
-		"AzureDataLakeStorage7_properties_typeProperties_url": {
-			"value": "https://moviesdataset.dfs.core.windows.net/"
 		}
 	}
 }

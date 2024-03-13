@@ -35,6 +35,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage7'"
 		},
+		"sqlinputblob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqlinputblob'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://moviesdataset.dfs.core.windows.net/"
@@ -55,6 +59,18 @@
 			"type": "string",
 			"defaultValue": "https://moviesdataset.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage6_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://moviesdataset.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage7_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://moviesdataset.dfs.core.windows.net/"
+		},
+		"HttpUfoData_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/vetate/ufo-data/main/ufo-sightings-transformed.csv "
+		},
 		"actionHTTP_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/vetate/project-ETL-Movies-DATAcsv/main/action.csv"
@@ -74,18 +90,6 @@
 		"thrillerHTTP_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/vetate/project-ETL-Movies-DATAcsv/main/thriller.csv "
-		},
-		"HttpUfoData_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com/vetate/ufo-data/main/ufo-sightings-transformed.csv "
-		},
-		"AzureDataLakeStorage6_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://moviesdataset.dfs.core.windows.net/"
-		},
-		"AzureDataLakeStorage7_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://moviesdataset.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -135,6 +139,9 @@
 					"AzureDataLakeStorage7_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage7_accountKey')]"
 					},
+					"sqlinputblob_connectionString": {
+						"value": "[parameters('sqlinputblob_connectionString')]"
+					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -150,6 +157,15 @@
 					"AzureDataLakeStorage5_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage5_properties_typeProperties_url')]"
 					},
+					"AzureDataLakeStorage6_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage6_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage7_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage7_properties_typeProperties_url')]"
+					},
+					"HttpUfoData_properties_typeProperties_url": {
+						"value": "[parameters('HttpUfoData_properties_typeProperties_url')]"
+					},
 					"actionHTTP_properties_typeProperties_url": {
 						"value": "[parameters('actionHTTP_properties_typeProperties_url')]"
 					},
@@ -164,15 +180,6 @@
 					},
 					"thrillerHTTP_properties_typeProperties_url": {
 						"value": "[parameters('thrillerHTTP_properties_typeProperties_url')]"
-					},
-					"HttpUfoData_properties_typeProperties_url": {
-						"value": "[parameters('HttpUfoData_properties_typeProperties_url')]"
-					},
-					"AzureDataLakeStorage6_properties_typeProperties_url": {
-						"value": "[parameters('AzureDataLakeStorage6_properties_typeProperties_url')]"
-					},
-					"AzureDataLakeStorage7_properties_typeProperties_url": {
-						"value": "[parameters('AzureDataLakeStorage7_properties_typeProperties_url')]"
 					}
 				}
 			},
