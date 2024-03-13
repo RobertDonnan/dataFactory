@@ -28,6 +28,9 @@
 					},
 					"sink": {
 						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
@@ -46,13 +49,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ADLS2",
+						"referenceName": "ADLS",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "horror",
+						"referenceName": "ADLS2",
 						"type": "DatasetReference"
 					}
 				]
