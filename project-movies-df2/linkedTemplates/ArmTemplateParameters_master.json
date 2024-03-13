@@ -26,6 +26,9 @@
 		"AzureDataLakeStorage7_accountKey": {
 			"value": ""
 		},
+		"OutputSQL_connectionString": {
+			"value": ""
+		},
 		"sqlinputblob_connectionString": {
 			"value": ""
 		},

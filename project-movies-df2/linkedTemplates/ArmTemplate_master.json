@@ -35,6 +35,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage7'"
 		},
+		"OutputSQL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'OutputSQL'"
+		},
 		"sqlinputblob_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sqlinputblob'"
@@ -138,6 +142,9 @@
 					},
 					"AzureDataLakeStorage7_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage7_accountKey')]"
+					},
+					"OutputSQL_connectionString": {
+						"value": "[parameters('OutputSQL_connectionString')]"
 					},
 					"sqlinputblob_connectionString": {
 						"value": "[parameters('sqlinputblob_connectionString')]"
