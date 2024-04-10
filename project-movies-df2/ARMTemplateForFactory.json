@@ -39,6 +39,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'OutputSQL'"
 		},
+		"SportifyBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SportifyBlobStorage'"
+		},
+		"Spotify_In_Description_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Spotify_In_Description'"
+		},
 		"sqlinputblob_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sqlinputblob'"
@@ -247,6 +255,77 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/carsCSV')]",
 				"[concat(variables('factoryId'), '/datasets/CarsTable')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Blob to SQL_db')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "db_BlobSource",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "destination_Spotify",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/db_BlobSource')]",
+				"[concat(variables('factoryId'), '/datasets/destination_Spotify')]"
 			]
 		},
 		{
@@ -1014,6 +1093,125 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/db_BlobSource')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SportifyBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "datasetSpotify.csv",
+						"folderPath": "raw-data",
+						"container": "spotify"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ID",
+						"type": "String"
+					},
+					{
+						"name": "song",
+						"type": "String"
+					},
+					{
+						"name": "song_poplarity",
+						"type": "String"
+					},
+					{
+						"name": "artist",
+						"type": "String"
+					},
+					{
+						"name": "albm",
+						"type": "String"
+					},
+					{
+						"name": "albm_cover",
+						"type": "String"
+					},
+					{
+						"name": "artist_poplarity",
+						"type": "String"
+					},
+					{
+						"name": "genre",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SportifyBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/destination_Spotify')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Spotify_In_Description",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "song",
+						"type": "varchar"
+					},
+					{
+						"name": "song_popularity",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "artist",
+						"type": "varchar"
+					},
+					{
+						"name": "album",
+						"type": "varchar"
+					},
+					{
+						"name": "album_cover",
+						"type": "varchar"
+					},
+					{
+						"name": "artist_popularity",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "genre",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Spotify"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Spotify_In_Description')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/horror')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1260,6 +1458,32 @@
 				"type": "AzureSqlDatabase",
 				"typeProperties": {
 					"connectionString": "[parameters('OutputSQL_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SportifyBlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('SportifyBlobStorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Spotify_In_Description')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('Spotify_In_Description_connectionString')]"
 				}
 			},
 			"dependsOn": []

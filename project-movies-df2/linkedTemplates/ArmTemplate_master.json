@@ -39,6 +39,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'OutputSQL'"
 		},
+		"SportifyBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SportifyBlobStorage'"
+		},
+		"Spotify_In_Description_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Spotify_In_Description'"
+		},
 		"sqlinputblob_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sqlinputblob'"
@@ -145,6 +153,12 @@
 					},
 					"OutputSQL_connectionString": {
 						"value": "[parameters('OutputSQL_connectionString')]"
+					},
+					"SportifyBlobStorage_connectionString": {
+						"value": "[parameters('SportifyBlobStorage_connectionString')]"
+					},
+					"Spotify_In_Description_connectionString": {
+						"value": "[parameters('Spotify_In_Description_connectionString')]"
 					},
 					"sqlinputblob_connectionString": {
 						"value": "[parameters('sqlinputblob_connectionString')]"

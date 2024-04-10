@@ -29,6 +29,12 @@
 		"OutputSQL_connectionString": {
 			"value": ""
 		},
+		"SportifyBlobStorage_connectionString": {
+			"value": ""
+		},
+		"Spotify_In_Description_connectionString": {
+			"value": ""
+		},
 		"sqlinputblob_connectionString": {
 			"value": ""
 		},
