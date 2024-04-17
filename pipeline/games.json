@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "games",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -54,7 +54,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText2",
+						"referenceName": "gamesdataset",
 						"type": "DatasetReference"
 					}
 				]
