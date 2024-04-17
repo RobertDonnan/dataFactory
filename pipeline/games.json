@@ -18,9 +18,8 @@
 					"source": {
 						"type": "DelimitedTextSource",
 						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings"
@@ -30,7 +29,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "vgsales",
+						"referenceName": "vglinkedservice",
 						"type": "DatasetReference"
 					}
 				]
